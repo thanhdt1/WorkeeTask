@@ -1,0 +1,26 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "jsx": "react-native",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["index.js", "src", "test"]
+}
