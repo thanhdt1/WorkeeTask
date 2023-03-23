@@ -12,7 +12,7 @@ const ItemChooseAnswer = (props: PropsItemChooseAnswer & ChooseAnswerType) => {
       <HStack alignItems={'center'} w={'full'} minH={'16'} mt={2} mx={5}>
         <Radio value={value}>
           <Text fontSize={'xl'} color={colors.black} flexWrap={'wrap'}>
-            {value}({label})
+            {label}
           </Text>
         </Radio>
       </HStack>

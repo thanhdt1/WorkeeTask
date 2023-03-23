@@ -19,7 +19,7 @@ import {listQuestions} from '~/mock/ListQuestionMockup';
 import {ChooseAnswerType} from '~/type/QuestionType';
 import ItemChooseAnswer from '~/components/ItemChooseAnswer';
 type Props = MainStackScreenProps<'DETAIL_QUESTION_SCREEN'>;
-const DetailQuestionScreen = ({route}: Props) => {
+const DetailQuestionScreen = ({route, navigation}: Props) => {
   const {colors} = useTheme();
   const [id, setId] = useState(route?.params?.id);
   const dataQuestion = listQuestions.find(e => e?.id === id);
@@ -43,9 +43,17 @@ const DetailQuestionScreen = ({route}: Props) => {
     const indexQuestion = listQuestions.findIndex(e => e.id === id);
     setId(listQuestions[indexQuestion - 1].id);
   };
+  const handleSave = () => {
+    navigation.navigate('RESULT_SCREEN');
+  };
   return (
     <MainLayout safeAreaBottom={0}>
-      <HeaderComponent title={'Questions' + id} />
+      <HeaderComponent
+        title={'Questions ' + id}
+        saveButton
+        hasRightIcon
+        handleSave={handleSave}
+      />
       <KeyboardAwareScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}

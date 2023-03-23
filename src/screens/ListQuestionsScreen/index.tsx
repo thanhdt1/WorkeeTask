@@ -2,12 +2,13 @@ import React from 'react';
 import {VStack, FlatList} from 'native-base';
 import MainLayout from '~/components/MainLayout';
 import HeaderComponent from '~/components/Header';
-import {listQuestions} from '~/mock/ListQuestionMockup';
 import ItemQuestion from '~/components/ItemQuestion';
 import * as ScreenName from '~/constants/ScreenName';
 import {MainStackScreenProps} from '~/navigation/AppNavigation';
+import {useSelector} from 'react-redux';
 type Props = MainStackScreenProps<'LIST_QUESTIONS_SCREEN'>;
 const ListQuestionsScreen = ({navigation}: Props) => {
+  const {questionList} = useSelector(state => state.question);
   const renderItemQuestion = ({item, index}) => {
     return (
       <ItemQuestion
@@ -23,7 +24,7 @@ const ListQuestionsScreen = ({navigation}: Props) => {
       <HeaderComponent title={'List Questions'} />
       <VStack mx={4}>
         <FlatList
-          data={listQuestions}
+          data={questionList}
           renderItem={renderItemQuestion}
           keyExtractor={(__, index) => String(index)}
         />

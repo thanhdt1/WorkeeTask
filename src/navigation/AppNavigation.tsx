@@ -11,6 +11,7 @@ import * as ScreenName from '~/constants/ScreenName';
 import DetailQuestionScreen from '~/screens/DetailQuestionScreen';
 import HomeScreen from '~/screens/HomeScreen';
 import ListQuestionsScreen from '~/screens/ListQuestionsScreen';
+import ResultScreen from '~/screens/ResultScreen';
 import {navigationRef} from '~/services/navigationServices';
 import {RootStackRoutes, RootStackScreenProps} from '~/type/types';
 
@@ -18,6 +19,7 @@ export type MainStackParamList = {
   [ScreenName.HOME_SCREEN]: undefined;
   [ScreenName.DETAIL_QUESTION_SCREEN]: {id: string} | undefined;
   [ScreenName.LIST_QUESTIONS_SCREEN]: undefined;
+  [ScreenName.RESULT_SCREEN]: undefined;
 };
 const Stack = createNativeStackNavigator<MainStackParamList>();
 export type MainStackScreenProps<T extends keyof MainStackParamList> =
@@ -40,6 +42,10 @@ const AppNavigation = () => {
         <Stack.Screen
           name={ScreenName.DETAIL_QUESTION_SCREEN}
           component={DetailQuestionScreen}
+        />
+        <Stack.Screen
+          name={ScreenName.RESULT_SCREEN}
+          component={ResultScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

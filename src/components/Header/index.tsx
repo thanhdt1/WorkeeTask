@@ -58,9 +58,9 @@ const HeaderComponent = ({
           py={'2'}
           px="2"
           onPress={handleSave}
-          _pressed={{bg: 'dark.500'}}
+          _pressed={{opacity: 0.5}}
           borderRadius="8">
-          <Text bold color={colors.primary[600]} fontSize={16}>
+          <Text bold color={colors.primary[600]} fontSize={18}>
             Save
           </Text>
         </Pressable>
