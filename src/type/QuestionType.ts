@@ -10,7 +10,7 @@ export type ItemQuestions = {
   id: string;
   questionText: string;
   descriptionText?: string;
-  initialValue?: any;
+  initialValue?: any | string;
   answerComponent?: React.ComponentType<{
     value: any;
     onChange: (newValue: any) => void;

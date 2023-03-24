@@ -5,13 +5,17 @@ import * as ScreenName from '~/constants/ScreenName';
 import {MainStackScreenProps} from '~/navigation/AppNavigation';
 import {useQuestion} from '~/slices/questionSlice';
 import {listQuestions} from '~/mock/ListQuestionMockup';
+import {useSelector} from 'react-redux';
 type Props = MainStackScreenProps<'HOME_SCREEN'>;
 
 const HomeScreen = ({navigation}: Props) => {
   const {colors} = useTheme();
   const {setListQuestion} = useQuestion();
+  const {questionList} = useSelector(state => state.question);
   useEffect(() => {
-    setListQuestion(listQuestions);
+    if (questionList.length === 0) {
+      setListQuestion(listQuestions);
+    }
   }, []);
   return (
     <MainLayout safeAreaBottom={0}>

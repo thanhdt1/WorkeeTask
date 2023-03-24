@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   VStack,
-  FlatList,
   Text,
   Input,
   HStack,
@@ -18,13 +17,45 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {listQuestions} from '~/mock/ListQuestionMockup';
 import {ChooseAnswerType} from '~/type/QuestionType';
 import ItemChooseAnswer from '~/components/ItemChooseAnswer';
+import {useQuestion} from '~/slices/questionSlice';
+import {useSelector} from 'react-redux';
 type Props = MainStackScreenProps<'DETAIL_QUESTION_SCREEN'>;
 const DetailQuestionScreen = ({route, navigation}: Props) => {
+  const {questionList} = useSelector(state => state.question);
   const {colors} = useTheme();
   const [id, setId] = useState(route?.params?.id);
-  const dataQuestion = listQuestions.find(e => e?.id === id);
-  const [answer, setAnswer] = useState('');
-  const [valueChoose, setValueChoose] = useState<string>('');
+  const dataQuestion = questionList.find(e => e?.id === id);
+  const [answer, setAnswer] = useState<any>(
+    dataQuestion?.answers.length === 0 ? dataQuestion?.initialValue : '',
+  );
+
+  const [valueChoose, setValueChoose] = useState<string>(
+    dataQuestion?.initialValue,
+  );
+  const {updateQuestion} = useQuestion();
+  useEffect(() => {
+    if (answer === '') {
+      const data = {...dataQuestion, initialValue: answer, skipable: true};
+      updateQuestion(data);
+    } else {
+      const data = {...dataQuestion, initialValue: answer, skipable: false};
+      updateQuestion(data);
+    }
+  }, [answer]);
+  useEffect(() => {
+    if (valueChoose === '') {
+      const data = {...dataQuestion, initialValue: valueChoose, skipable: true};
+      updateQuestion(data);
+    } else {
+      const data = {
+        ...dataQuestion,
+        initialValue: valueChoose,
+        skipable: false,
+      };
+
+      updateQuestion(data);
+    }
+  }, [valueChoose]);
 
   const renderItemAnswer = (item: ChooseAnswerType, index) => {
     return (
@@ -83,7 +114,7 @@ const DetailQuestionScreen = ({route, navigation}: Props) => {
               h={12}
               placeholder={'Enter your answer'}
               fontSize={'xl'}
-              onChange={text => setAnswer(text.toString())}
+              onChangeText={text => setAnswer(text)}
               value={answer}
             />
           ) : (

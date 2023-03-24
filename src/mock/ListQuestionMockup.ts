@@ -4,6 +4,7 @@ export const listQuestions = [
     questionText: "What's your name?",
     descriptionText: 'Please answer the question by typing in the box below!',
     skipable: false,
+    initialValue: '',
     answers: [],
   },
   {
@@ -11,11 +12,12 @@ export const listQuestions = [
     questionText: 'How many people are there in your family?',
     descriptionText: 'Please choose the correct answer',
     skipable: false,
+    initialValue: null,
     answers: [
-      {label: 'One', value: 1},
-      {label: 'Two', value: 2},
-      {label: 'Three', value: 3},
-      {label: 'Four', value: 4},
+      {label: 'One', value: 'One'},
+      {label: 'Two', value: 'Two'},
+      {label: 'Three', value: 'Three'},
+      {label: 'Four', value: 'Four'},
     ],
   },
   {
@@ -23,6 +25,7 @@ export const listQuestions = [
     questionText: 'Do you have a cat?',
     descriptionText: 'Please choose the correct answer',
     skipable: false,
+    initialValue: null,
     answers: [
       {label: 'Yes', value: 'Yes'},
       {label: 'No', value: 'No'},
@@ -33,6 +36,7 @@ export const listQuestions = [
     questionText: "What's your cat name?",
     descriptionText: 'Please answer the question by typing in the box below!',
     skipable: false,
+    initialValue: '',
     answers: [],
   },
   {
@@ -40,6 +44,7 @@ export const listQuestions = [
     questionText: 'Where is your hometown??',
     descriptionText: 'Please choose the correct answer',
     skipable: false,
+    initialValue: null,
     answers: [
       {label: 'America', value: 'America'},
       {label: 'England', value: 'England'},
